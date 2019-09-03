@@ -9,16 +9,18 @@ import DeepDiff
 class RepositoryFeedIntent {
   
   typealias FeedState = RepositoryFeedController.State
+  typealias CellState = GithubRepositoryCellNode.State
   
   public var useCase: RepositoryFeedUseCase = .init()
   
   func fetch(_ state: FeedState, isReload: Bool) -> Promise<FeedState> {
-    
+  
     return useCase.fetch(nextPage: isReload ? nil : state.nextSince)
       .map({ repositories -> FeedState in
         
         let cellViewStates = (repositories ?? []).map {
-          return GithubRepositoryCellNode.State.init(
+          
+          return CellState.init(
             repositoryID: $0.id,
             profileState: .init(profileImageURL: $0.user?.profileURL),
             repoName: $0.repositoryName ?? "unknown",

@@ -46,7 +46,7 @@ final class RepositoryFeedController: ASViewController<ASDisplayNode> {
     return node
   }()
   
-  private var currentState: State = State()
+  private var viewState: State = State()
   private var intent: RepositoryFeedIntent = .init()
   
   init() {
@@ -77,10 +77,10 @@ final class RepositoryFeedController: ASViewController<ASDisplayNode> {
   override func viewDidLoad() {
     
     super.viewDidLoad()
-    intent.fetch(currentState, isReload: true).threadingOnMain()
+    intent.fetch(viewState, isReload: true).threadingOnMain()
       .done({ [weak self] state in
         guard let self = self else { return }
-        self.currentState = state
+        self.viewState = state
         self.collectionNode.performBatch(
           changes: state.repoAreaChangeSet,
           section: Section.repoArea.rawValue,
@@ -111,7 +111,7 @@ extension RepositoryFeedController: ASCollectionDataSource {
     case .introArea:
       return 1
     case .repoArea:
-      return currentState.items.count
+      return viewState.items.count
     case .loadingIndicator:
       return 1
     }
@@ -129,7 +129,7 @@ extension RepositoryFeedController: ASCollectionDataSource {
       return { RepositoryFeedIntroCellNode.init() }
     case .repoArea:
       let cellNode = GithubRepositoryCellNode.init()
-      cellNode.state = currentState.items[indexPath.item]
+      cellNode.state = viewState.items[indexPath.item]
       
       cellNode.profileNode.tap({ [weak self, weak cellNode] () in
         guard let state = cellNode?.state else { return }
@@ -166,19 +166,19 @@ extension RepositoryFeedController: ASCollectionDelegate & ASCollectionDelegateF
   
   func shouldBatchFetch(for collectionNode: ASCollectionNode) -> Bool {
     
-    return currentState.hasNext
+    return viewState.hasNext
   }
   
   func collectionNode(_ collectionNode: ASCollectionNode,
                       willBeginBatchFetchWith context: ASBatchContext) {
     
-    currentState.batchContext = context
+    viewState.batchContext = context
     
-    intent.fetch(currentState, isReload: false)
+    intent.fetch(viewState, isReload: false)
       .threadingOnMain()
       .done({ [weak self] state in
         guard let self = self else { return }
-        self.currentState = state
+        self.viewState = state
         self.collectionNode.performBatch(
           changes: state.repoAreaChangeSet,
           section: Section.repoArea.rawValue,

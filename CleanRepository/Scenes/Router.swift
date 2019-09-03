@@ -15,7 +15,7 @@ class Router {
   }
   
   public func openCleanRepository() {
-    guard let url = URL(string: "https://github.com/GeekTree0101") else { return }
+    guard let url = URL(string: "https://github.com/GeekTree0101/CleanRepository") else { return }
     UIApplication.shared.open(url, options: [:], completionHandler: nil)
   }
   
