@@ -1,0 +1,27 @@
+excluded:
+  - Pods
+  - Carthage
+disabled_rules:
+  - trailing_whitespace
+  - trailing_semicolon
+  - trailing_newline
+  - line_length
+  - colon
+  - legacy_constant
+  - function_parameter_count
+  - closing_brace
+  - file_length
+  - type_name
+  - legacy_constructor
+  - variable_name
+  - opening_brace
+  - comma
+  - valid_docs
+  - statement_position
+  - control_statement
+  - cyclomatic_complexity
+  - type_body_length
+  - nesting
+  - function_body_length
+  - empty_parentheses_with_trailing_closure
+  - redundant_string_enum_value
