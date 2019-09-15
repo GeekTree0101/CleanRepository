@@ -3,7 +3,7 @@
 //  Copyright © 2019 Geektree0101. All rights reserved.
 //
 
-import PromiseKit
+import PMKAlamofire
 
 enum GithubService: APIService {
   
