@@ -1,6 +1,5 @@
 github "texturegroup/texture" >= 2.8.1
 github "Rightpoint/BonMot"
-github "GeekTree0101/Codextended"
 github "mxcl/PromiseKit"
 github "onmyway133/DeepDiff" ~> 2.2.0
 github "PromiseKit/PMKAlamofire" ~> 3.0
