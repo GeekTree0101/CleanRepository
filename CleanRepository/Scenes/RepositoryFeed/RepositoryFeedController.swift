@@ -7,22 +7,12 @@ import AsyncDisplayKit
 import DeepDiff
 import MBProgressHUD
 
-final class RepositoryFeedController: ASViewController<ASDisplayNode> {
+protocol RepositoryFeedDisplayLogic: class {
   
-  struct State {
-    
-    var nextSince: Int? = nil
-    
-    var hasNext: Bool {
-      return nextSince != nil
-    }
-    
-    var status: FeedUseCase.Status = .loading
-    var items: [GithubRepositoryCellNode.State] = []
-    var batchContext: ASBatchContext? = nil
-    
-    var repoAreaChangeSet: [Change<GithubRepositoryCellNode.State>] = []
-  }
+  func displayFeedItems(_ viewModel: RepositoryFeedModels.Feed.ViewModel)
+}
+
+final class RepositoryFeedController: ASViewController<ASDisplayNode> {
   
   enum Section: Int, CaseIterable {
     
@@ -46,8 +36,10 @@ final class RepositoryFeedController: ASViewController<ASDisplayNode> {
     return node
   }()
   
-  private var viewState: State = State()
-  private var intent: RepositoryFeedIntent = .init()
+  private var batchContext: ASBatchContext?
+  private var feedViewModel: RepositoryFeedModels.Feed.ViewModel = .init()
+  
+  public var interactor: RepositoryFeedInteractorLogic!
   
   init() {
     
@@ -59,11 +51,20 @@ final class RepositoryFeedController: ASViewController<ASDisplayNode> {
       guard let self = self else { return ASLayoutSpec() }
       return self.layoutSpecThatFits(sizeRange)
     }
+    self.configuration()
   }
   
   required init?(coder aDecoder: NSCoder) {
     
     fatalError("init(coder:) has not been implemented")
+  }
+  
+  private func configuration() {
+    let interactor = RepositoryFeedInteractor.init()
+    let presenter = RepositoryFeedPresenter.init()
+    interactor.presenter = presenter
+    presenter.displayLogic = self
+    self.interactor = interactor
   }
   
   private func layoutSpecThatFits(_ constraintedSize: ASSizeRange) -> ASLayoutSpec {
@@ -75,23 +76,28 @@ final class RepositoryFeedController: ASViewController<ASDisplayNode> {
   }
   
   override func viewDidLoad() {
-    
     super.viewDidLoad()
-    intent.fetch(viewState, isReload: true).threadingOnMain()
-      .done({ [weak self] state in
-        guard let self = self else { return }
-        self.viewState = state
-        self.collectionNode.performBatch(
-          changes: state.repoAreaChangeSet,
-          section: Section.repoArea.rawValue,
-          completion: { fin in
-            state.batchContext?.completeBatchFetching(fin)
-        })
+    let request = RepositoryFeedModels.Feed.Request(isReload: true)
+    interactor.fetch(request)
+  }
+}
+
+extension RepositoryFeedController: RepositoryFeedDisplayLogic {
+  
+  func displayFeedItems(_ viewModel: RepositoryFeedModels.Feed.ViewModel) {
+    
+    if let errorMessage = viewModel.errorToastMessage {
+      MBProgressHUD.toast(errorMessage, from: self.view)
+    } else {
+      self.feedViewModel = viewModel
+      
+      self.collectionNode.performBatch(
+        changes: viewModel.repoAreaChangeSet,
+        section: Section.repoArea.rawValue,
+        completion: { [weak self] fin in
+          self?.batchContext?.completeBatchFetching(fin)
       })
-      .catch({ [weak self] err in
-        guard let self = self else { return }
-        MBProgressHUD.toast(err.localizedDescription, from: self.view)
-      })
+    }
   }
 }
 
@@ -111,7 +117,7 @@ extension RepositoryFeedController: ASCollectionDataSource {
     case .introArea:
       return 1
     case .repoArea:
-      return viewState.items.count
+      return self.feedViewModel.cellViewModels.count
     case .loadingIndicator:
       return 1
     }
@@ -129,7 +135,7 @@ extension RepositoryFeedController: ASCollectionDataSource {
       return { RepositoryFeedIntroCellNode.init() }
     case .repoArea:
       let cellNode = GithubRepositoryCellNode.init()
-      cellNode.state = viewState.items[indexPath.item]
+      cellNode.state = self.feedViewModel.cellViewModels[indexPath.item]
       
       cellNode.profileNode.tap({ [weak self, weak cellNode] () in
         guard let state = cellNode?.state else { return }
@@ -165,31 +171,13 @@ extension RepositoryFeedController: ASCollectionDataSource {
 extension RepositoryFeedController: ASCollectionDelegate & ASCollectionDelegateFlowLayout {
   
   func shouldBatchFetch(for collectionNode: ASCollectionNode) -> Bool {
-    
-    return viewState.hasNext
+    return feedViewModel.hasNext
   }
   
   func collectionNode(_ collectionNode: ASCollectionNode,
                       willBeginBatchFetchWith context: ASBatchContext) {
-    
-    viewState.batchContext = context
-    
-    intent.fetch(viewState, isReload: false)
-      .threadingOnMain()
-      .done({ [weak self] state in
-        guard let self = self else { return }
-        self.viewState = state
-        self.collectionNode.performBatch(
-          changes: state.repoAreaChangeSet,
-          section: Section.repoArea.rawValue,
-          completion: { fin in
-            state.batchContext?.completeBatchFetching(fin)
-        })
-      })
-      .catch({ [weak self] err in
-        guard let self = self else { return }
-        MBProgressHUD.toast(err.localizedDescription, from: self.view)
-      })
+    self.batchContext = context
+    interactor.fetch(RepositoryFeedModels.Feed.Request(isReload: false))
   }
   
   func collectionNode(_ collectionNode: ASCollectionNode,
