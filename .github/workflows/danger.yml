@@ -21,7 +21,7 @@ jobs:
     - name: Install Carthage
       run: | 
         brew install carthage
-        brew update
+        carthage update
     - name: Test Automation
       run: |
         set -o pipefail && xcodebuild clean build test \
