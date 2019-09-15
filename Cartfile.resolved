@@ -1,6 +1,5 @@
 git "https://chromium.googlesource.com/webm/libwebp" "v0.6.0"
 github "Alamofire/Alamofire" "4.9.0"
-github "GeekTree0101/Codextended" "0.3.0"
 github "PromiseKit/PMKAlamofire" "3.2.4"
 github "Quick/Nimble" "v8.0.4"
 github "Rightpoint/BonMot" "5.4.1"
