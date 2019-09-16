@@ -19,6 +19,7 @@ jobs:
         gem install bundler
         bundle install
     - name: Install Carthage
+      continue-on-error: true
       run: | 
         brew install carthage
         carthage update
