@@ -22,7 +22,7 @@ jobs:
       continue-on-error: true
       run: | 
         brew install carthage
-        carthage update
+        carthage bootstrap --platform iOS
     - name: Test Automation
       run: |
         set -o pipefail && xcodebuild clean build test \
