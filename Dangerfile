@@ -5,5 +5,5 @@ swiftlint.lint_files
 # Run xcov
 xcov.report(
     scheme: 'CleanRepository',
-    workspace: 'CleanRepository.xcodeproj',
+    project: 'CleanRepository.xcodeproj',
     only_project_targets: true)
