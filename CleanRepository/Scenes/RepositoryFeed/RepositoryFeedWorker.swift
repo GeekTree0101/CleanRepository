@@ -7,7 +7,7 @@ import PromiseKit
 import DeepDiff
 import AsyncDisplayKit
 
-class RepositoryFeedUseCase {
+class RepositoryFeedWorker {
   
   func fetch(nextPage: Int?) -> Promise<[GithubRepo]?> {
     
