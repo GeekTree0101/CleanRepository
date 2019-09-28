@@ -67,45 +67,36 @@ final class RepositoryFeedGuideArchtectureCellNode: ASCellNode {
   }()
   
   override init() {
-    
     super.init()
     self.automaticallyManagesSubnodes = true
     self.backgroundColor = .clear
-    self.contentNode.layoutSpecBlock  = { [weak self] (_, _) -> ASLayoutSpec in
-      return self?.contentLayoutSpec() ?? ASLayoutSpec()
-    }
-  }
-  
-  override func didLoad() {
     
-    super.didLoad()
-    self.openRepoButtonNode.tap({
-      Router.shared.openCleanRepository()
-    })
-  }
-  
-  override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-    return LayoutSpec {
-      InsetLayout(insets: .init(top: 10.0, left: 15.0, bottom: 10.0, right: 15.0)) {
-        self.contentNode
+    self.layoutSpecBlock = { [weak self] (_, _) -> ASLayoutSpec in
+      guard let self = self else { return ASLayoutSpec() }
+      return LayoutSpec {
+        InsetLayout(insets: .init(top: 10.0, left: 15.0, bottom: 10.0, right: 15.0)) {
+          self.contentNode
+        }
       }
     }
-  }
-  
-  private func contentLayoutSpec() -> ASLayoutSpec {
     
-    return LayoutSpec {
-      InsetLayout(insets: .init(top: 15.0, left: 15.0, bottom: 15.0, right: 15.0)) {
-        HStackLayout(spacing: 14.0, justifyContent: .spaceBetween, alignItems: .center) {
-          LayoutSpec {
-            VStackLayout(spacing: 0.0, justifyContent: .start, alignItems: .start) {
-              self.titleNode.styled({ $0.spacingAfter(12.0) })
-              self.descNode.styled({ $0.spacingAfter(4.0) })
-              self.copyrightNode
+    self.contentNode.layoutSpecBlock  = { [weak self] (_, _) -> ASLayoutSpec in
+      guard let self = self else { return ASLayoutSpec() }
+      return LayoutSpec {
+        InsetLayout(insets: .init(top: 15.0, left: 15.0, bottom: 15.0, right: 15.0)) {
+          HStackLayout(spacing: 14.0, justifyContent: .spaceBetween, alignItems: .center) {
+            LayoutSpec {
+              VStackLayout(spacing: 0.0, justifyContent: .start, alignItems: .start) {
+                self.titleNode.styled({ $0.spacingAfter(12.0) })
+                self.descNode.styled({ $0.spacingAfter(4.0) })
+                self.copyrightNode
+              }
             }
+            .styled({ $0.shrink() })
+            self.openRepoButtonNode.action({
+              Router.shared.openCleanRepository()
+            })
           }
-          .styled({ $0.shrink() })
-          self.openRepoButtonNode
         }
       }
     }

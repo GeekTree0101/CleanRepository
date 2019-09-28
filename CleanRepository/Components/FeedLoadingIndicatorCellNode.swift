@@ -24,6 +24,12 @@ final class FeedLoadingIndicatorCellNode: ASCellNode {
     self.automaticallyManagesSubnodes = true
     self.style.height(80.0)
     self.backgroundColor = .clear
+    self.layoutSpecBlock = { [weak self] (_, _) -> ASLayoutSpec in
+      guard let self = self else { return ASLayoutSpec() }
+      return LayoutSpec {
+        self.indicatorNode.styled({ $0.alignSelf = .center })
+      }
+    }
   }
   
   override func didEnterVisibleState() {
@@ -34,11 +40,5 @@ final class FeedLoadingIndicatorCellNode: ASCellNode {
   override func didExitVisibleState() {
     super.didExitVisibleState()
     indicatorView?.stopAnimating()
-  }
-  
-  override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-    return LayoutSpec {
-      indicatorNode.styled({ $0.alignSelf = .center })
-    }
   }
 }

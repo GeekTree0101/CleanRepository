@@ -9,35 +9,22 @@ private var actionKey: String = "actionKey"
 
 extension ASControlNode: AssociatedObject {
   
-  public func tap(_ callback: @escaping () -> Void,
-                  for controlEvents: ASControlNodeEvent = .touchUpInside) {
-    self.controlActionCallBack.register(callback)
-    self.addTarget(self, action: #selector(internalControlAction), forControlEvents: controlEvents)
+  @discardableResult
+  public func action(_ callback: @escaping () -> Void,
+                  for controlEvents: ASControlNodeEvent = .touchUpInside) -> Self {
+    self.controlActionCallBack = callback
+    self.addTarget(self, action: #selector(controlActionHandler), forControlEvents: controlEvents)
+    return self
   }
   
-  @objc private func internalControlAction() {
-    self.controlActionCallBack.performBatch()
+  @objc private func controlActionHandler() {
+    guard let execute = self.controlActionCallBack else { return }
+    execute()
   }
   
-  private class ControlEventObject {
-    
-    private var _lock: NSRecursiveLock = .init()
-    private var callbacks: [() -> Void] = []
-    
-    internal func register(_ callback: @escaping () -> Void) {
-      self._lock.lock(); defer { self._lock.unlock() }
-      callbacks.append(callback)
-    }
-    
-    internal func performBatch() {
-      self._lock.lock(); defer { self._lock.unlock() }
-      callbacks.forEach({ $0() })
-    }
-  }
-  
-  private var controlActionCallBack: ControlEventObject {
+  private var controlActionCallBack: (() -> Void)? {
     get {
-      return self.associatedObject(forKey: &actionKey, default: ControlEventObject())
+      return self.associatedObject(forKey: &actionKey, default: nil)
     }
     set {
       self.setAssociatedObject(newValue, forKey: &actionKey)

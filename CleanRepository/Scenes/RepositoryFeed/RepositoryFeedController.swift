@@ -49,7 +49,11 @@ final class RepositoryFeedController: ASViewController<ASDisplayNode> {
     self.node.automaticallyRelayoutOnSafeAreaChanges = true
     self.node.layoutSpecBlock = { [weak self] (_, sizeRange) -> ASLayoutSpec in
       guard let self = self else { return ASLayoutSpec() }
-      return self.layoutSpecThatFits(sizeRange)
+      return LayoutSpec {
+        InsetLayout(insets: .zero) {
+          self.collectionNode
+        }
+      }
     }
     self.configuration()
   }
@@ -65,14 +69,6 @@ final class RepositoryFeedController: ASViewController<ASDisplayNode> {
     interactor.presenter = presenter
     presenter.displayLogic = self
     self.interactor = interactor
-  }
-  
-  private func layoutSpecThatFits(_ constraintedSize: ASSizeRange) -> ASLayoutSpec {
-    
-    return ASInsetLayoutSpec.init(
-      insets: .zero,
-      child: collectionNode
-    )
   }
   
   override func viewDidLoad() {

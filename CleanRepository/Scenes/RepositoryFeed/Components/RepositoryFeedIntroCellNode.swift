@@ -40,27 +40,20 @@ final class RepositoryFeedIntroCellNode: ASCellNode {
     super.init()
     self.automaticallyManagesSubnodes = true
     self.backgroundColor = .clear
-  }
-  
-  override func didLoad() {
-    
-    super.didLoad()
-    
-    infoNode.tap({
-      Router.shared.openGithubAPIGuide()
-    })
-  }
-  
-  override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-    return LayoutSpec {
-      InsetLayout(insets: .init(top: 40.0, left: 20.0, bottom: 40.0, right: 20.0)) {
-        LayoutSpec {
-          VStackLayout(spacing: 5.0, justifyContent: .start, alignItems: .start) {
-            self.infoNode
-            self.titleNode
+    self.layoutSpecBlock = { [weak self] (node, constraintedSize) -> ASLayoutSpec in
+      guard let self = self else { return ASLayoutSpec() }
+      return LayoutSpec {
+        InsetLayout(insets: .init(top: 40.0, left: 20.0, bottom: 40.0, right: 20.0)) {
+          LayoutSpec {
+            VStackLayout(spacing: 5.0, justifyContent: .start, alignItems: .start) {
+              self.infoNode.action({
+                Router.shared.openGithubAPIGuide()
+              })
+              self.titleNode
+            }
           }
+          .styled({ $0.shrink() })
         }
-        .styled({ $0.shrink() })
       }
     }
   }

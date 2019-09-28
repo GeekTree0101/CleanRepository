@@ -83,12 +83,36 @@ final class GithubRepositoryCellNode: ASCellNode {
   }
   
   override init() {
-    
     super.init()
     self.automaticallyManagesSubnodes = true
     self.backgroundColor = .clear
+    
+    self.layoutSpecBlock = { [weak self] (_, _) -> ASLayoutSpec in
+      guard let self = self else { return ASLayoutSpec() }
+      return LayoutSpec {
+        InsetLayout(insets: .init(top: 10.0, left: 15.0, bottom: 10.0, right: 15.0)) {
+          self.contentNode
+        }
+      }
+    }
+    
     self.contentNode.layoutSpecBlock  = { [weak self] (_, _) -> ASLayoutSpec in
-      return self?.contentLayoutSpec() ?? ASLayoutSpec()
+      guard let self = self else { return ASLayoutSpec() }
+      return LayoutSpec {
+        InsetLayout(insets: .init(top: 15.0, left: 15.0, bottom: 15.0, right: 15.0)) {
+          HStackLayout(spacing: 12.0, justifyContent: .start, alignItems: .stretch) {
+            self.profileNode
+            LayoutSpec {
+              VStackLayout(spacing: 4.0, justifyContent: .start, alignItems: .stretch) {
+                self.repoNameNode
+                self.repoDescNode
+                self.infoNode
+              }
+            }
+            .styled({ $0.shrink().nonGrow() })
+          }
+        }
+      }
     }
   }
   
@@ -101,29 +125,4 @@ final class GithubRepositoryCellNode: ASCellNode {
     infoNode.attributedText = "Created by \(username)".styled(with: Const.userInfoAttr)
   }
   
-  override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-    return LayoutSpec {
-      InsetLayout(insets: .init(top: 10.0, left: 15.0, bottom: 10.0, right: 15.0)) {
-        self.contentNode
-      }
-    }
-  }
-  
-  private func contentLayoutSpec() -> ASLayoutSpec {
-    return LayoutSpec {
-      InsetLayout(insets: .init(top: 15.0, left: 15.0, bottom: 15.0, right: 15.0)) {
-        HStackLayout(spacing: 12.0, justifyContent: .start, alignItems: .stretch) {
-          self.profileNode
-          LayoutSpec {
-            VStackLayout(spacing: 4.0, justifyContent: .start, alignItems: .stretch) {
-              self.repoNameNode
-              self.repoDescNode
-              self.infoNode
-            }
-          }
-          .styled({ $0.shrink().nonGrow() })
-        }
-      }
-    }
-  }
 }
