@@ -136,12 +136,6 @@ extension RepositoryFeedController: ASCollectionDataSource {
     case .repoArea:
       let cellNode = GithubRepositoryCellNode.init()
       cellNode.state = self.feedViewModel.cellViewModels[indexPath.item]
-      
-      cellNode.profileNode.tap({ [weak self, weak cellNode] () in
-        guard let state = cellNode?.state else { return }
-        Router.shared.openUserProfile(state.username, from: self)
-      })
-      
       return { cellNode }
     case .loadingIndicator:
       return { FeedLoadingIndicatorCellNode.init() }

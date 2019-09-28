@@ -37,6 +37,8 @@ final class FeedLoadingIndicatorCellNode: ASCellNode {
   }
   
   override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-    return ASCenterLayoutSpec.init(centeringOptions: .XY, sizingOptions: [], child: indicatorNode)
+    return LayoutSpec {
+      indicatorNode.styled({ $0.alignSelf = .center })
+    }
   }
 }

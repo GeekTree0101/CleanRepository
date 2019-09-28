@@ -38,11 +38,8 @@
 		DA5FD2D9231B702000A75D75 /* RepositoryFeedGuideArchtectureCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5FD2D8231B702000A75D75 /* RepositoryFeedGuideArchtectureCellNode.swift */; };
 		DA5FD2DB231B7CB100A75D75 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5FD2DA231B7CB100A75D75 /* Router.swift */; };
 		DA5FD2DD231B80A300A75D75 /* ASControlNode+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5FD2DC231B80A300A75D75 /* ASControlNode+Ex.swift */; };
-		DA5FD2E0231B86BB00A75D75 /* UserProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5FD2DF231B86BB00A75D75 /* UserProfileController.swift */; };
-		DA5FD2E3231B871500A75D75 /* UserProfileContentNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5FD2E2231B871500A75D75 /* UserProfileContentNode.swift */; };
-		DA5FD2E5231BC91500A75D75 /* UserProfileIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5FD2E4231BC91500A75D75 /* UserProfileIntent.swift */; };
-		DA5FD2E7231BC92500A75D75 /* UserProfileUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5FD2E6231BC92500A75D75 /* UserProfileUseCase.swift */; };
 		DA5FD2E9231BE2CB00A75D75 /* Injectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5FD2E8231BE2CB00A75D75 /* Injectable.swift */; };
+		DAB33C0C233F85D0002B9BB6 /* TextureLayoutSpecBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB33C0B233F85D0002B9BB6 /* TextureLayoutSpecBuilder.swift */; };
 		DAED5D5E232E4E9F00203E63 /* Codextended.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAED5D5D232E4E9F00203E63 /* Codextended.swift */; };
 		DAED5D60232E4F4200203E63 /* MBProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAED5D5F232E4F4200203E63 /* MBProgressHUD.framework */; };
 		DAED5D62232E4F9000203E63 /* RepositoryFeedModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAED5D61232E4F9000203E63 /* RepositoryFeedModels.swift */; };
@@ -109,11 +106,8 @@
 		DA5FD2D8231B702000A75D75 /* RepositoryFeedGuideArchtectureCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryFeedGuideArchtectureCellNode.swift; sourceTree = "<group>"; };
 		DA5FD2DA231B7CB100A75D75 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		DA5FD2DC231B80A300A75D75 /* ASControlNode+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ASControlNode+Ex.swift"; sourceTree = "<group>"; };
-		DA5FD2DF231B86BB00A75D75 /* UserProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileController.swift; sourceTree = "<group>"; };
-		DA5FD2E2231B871500A75D75 /* UserProfileContentNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileContentNode.swift; sourceTree = "<group>"; };
-		DA5FD2E4231BC91500A75D75 /* UserProfileIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileIntent.swift; sourceTree = "<group>"; };
-		DA5FD2E6231BC92500A75D75 /* UserProfileUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileUseCase.swift; sourceTree = "<group>"; };
 		DA5FD2E8231BE2CB00A75D75 /* Injectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injectable.swift; sourceTree = "<group>"; };
+		DAB33C0B233F85D0002B9BB6 /* TextureLayoutSpecBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextureLayoutSpecBuilder.swift; sourceTree = "<group>"; };
 		DAED5D5D232E4E9F00203E63 /* Codextended.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Codextended.swift; sourceTree = "<group>"; };
 		DAED5D5F232E4F4200203E63 /* MBProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MBProgressHUD.framework; path = Carthage/Build/iOS/MBProgressHUD.framework; sourceTree = "<group>"; };
 		DAED5D61232E4F9000203E63 /* RepositoryFeedModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryFeedModels.swift; sourceTree = "<group>"; };
@@ -242,7 +236,6 @@
 			children = (
 				DA5FD2DA231B7CB100A75D75 /* Router.swift */,
 				DA5FD2A82318A01800A75D75 /* RepositoryFeed */,
-				DA5FD2DE231B86AD00A75D75 /* UserProfile */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -256,6 +249,7 @@
 				DA5FD2C6231AA97F00A75D75 /* UIColor+Ex.swift */,
 				DA5FD2DC231B80A300A75D75 /* ASControlNode+Ex.swift */,
 				DAED5D5D232E4E9F00203E63 /* Codextended.swift */,
+				DAB33C0B233F85D0002B9BB6 /* TextureLayoutSpecBuilder.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -315,25 +309,6 @@
 				DA5FD2D6231B6C0100A75D75 /* FeedUseCase.swift */,
 			);
 			path = UseCase;
-			sourceTree = "<group>";
-		};
-		DA5FD2DE231B86AD00A75D75 /* UserProfile */ = {
-			isa = PBXGroup;
-			children = (
-				DA5FD2E1231B870A00A75D75 /* Components */,
-				DA5FD2DF231B86BB00A75D75 /* UserProfileController.swift */,
-				DA5FD2E4231BC91500A75D75 /* UserProfileIntent.swift */,
-				DA5FD2E6231BC92500A75D75 /* UserProfileUseCase.swift */,
-			);
-			path = UserProfile;
-			sourceTree = "<group>";
-		};
-		DA5FD2E1231B870A00A75D75 /* Components */ = {
-			isa = PBXGroup;
-			children = (
-				DA5FD2E2231B871500A75D75 /* UserProfileContentNode.swift */,
-			);
-			path = Components;
 			sourceTree = "<group>";
 		};
 		DA5FD2EB231C96B200A75D75 /* Scenes */ = {
@@ -517,7 +492,6 @@
 				DA5FD27323189E6B00A75D75 /* AppDelegate.swift in Sources */,
 				DA5FD2C7231AA97F00A75D75 /* UIColor+Ex.swift in Sources */,
 				DA5FD2DD231B80A300A75D75 /* ASControlNode+Ex.swift in Sources */,
-				DA5FD2E5231BC91500A75D75 /* UserProfileIntent.swift in Sources */,
 				DA5FD2B42318A2FA00A75D75 /* GithubRepositoryCellNode.swift in Sources */,
 				DA5FD2CA231AAC5D00A75D75 /* RepositoryFeedIntroCellNode.swift in Sources */,
 				DA5FD2AC2318A03000A75D75 /* RepositoryFeedController.swift in Sources */,
@@ -528,19 +502,17 @@
 				DA5FD2C3231AA51F00A75D75 /* ASCollectionNode+Ex.swift in Sources */,
 				DAED5D5E232E4E9F00203E63 /* Codextended.swift in Sources */,
 				DA5FD2CC231AAC7D00A75D75 /* FeedLoadingIndicatorCellNode.swift in Sources */,
-				DA5FD2E7231BC92500A75D75 /* UserProfileUseCase.swift in Sources */,
 				DAED5D66232E505400203E63 /* RepositoryFeedPresenter.swift in Sources */,
 				DA5FD2D7231B6C0100A75D75 /* FeedUseCase.swift in Sources */,
 				DAED5D62232E4F9000203E63 /* RepositoryFeedModels.swift in Sources */,
 				DA5FD2C1231969AA00A75D75 /* PromiseKit+Threading.swift in Sources */,
 				DA5FD2A523189FBC00A75D75 /* GithubUser.swift in Sources */,
-				DA5FD2E3231B871500A75D75 /* UserProfileContentNode.swift in Sources */,
-				DA5FD2E0231B86BB00A75D75 /* UserProfileController.swift in Sources */,
 				DA5FD2E9231BE2CB00A75D75 /* Injectable.swift in Sources */,
 				DA5FD2B02318A08900A75D75 /* UserProfileNode.swift in Sources */,
 				DA5FD2DB231B7CB100A75D75 /* Router.swift in Sources */,
 				DA5FD2BA23194F0D00A75D75 /* GithubService.swift in Sources */,
 				DA5FD2A723189FC600A75D75 /* GithubRepo.swift in Sources */,
+				DAB33C0C233F85D0002B9BB6 /* TextureLayoutSpecBuilder.swift in Sources */,
 				DAED5D64232E501A00203E63 /* RepositoryFeedInteractor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

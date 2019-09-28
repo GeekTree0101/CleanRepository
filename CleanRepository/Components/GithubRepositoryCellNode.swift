@@ -102,33 +102,28 @@ final class GithubRepositoryCellNode: ASCellNode {
   }
   
   override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-    return ASInsetLayoutSpec.init(
-      insets: .init(top: 10.0, left: 15.0, bottom: 10.0, right: 15.0),
-      child: contentNode)
+    return LayoutSpec {
+      InsetLayout(insets: .init(top: 10.0, left: 15.0, bottom: 10.0, right: 15.0)) {
+        self.contentNode
+      }
+    }
   }
   
   private func contentLayoutSpec() -> ASLayoutSpec {
-    
-    let contentLayout = ASStackLayoutSpec.init(
-      direction: .vertical,
-      spacing: 4.0,
-      justifyContent: .start,
-      alignItems: .stretch,
-      children: [repoNameNode,
-                 repoDescNode,
-                 infoNode].map({ $0.styled({ $0.shrink().nonGrow() }) }))
-    
-    let profileWithContentLayout = ASStackLayoutSpec.init(
-      direction: .horizontal,
-      spacing: 12.0,
-      justifyContent: .start,
-      alignItems: .stretch,
-      children: [profileNode,
-                 contentLayout.styled({ $0.shrink().nonGrow() })]
-    )
-    
-    return ASInsetLayoutSpec.init(
-      insets: .init(top: 15.0, left: 15.0, bottom: 15.0, right: 15.0),
-      child: profileWithContentLayout)
+    return LayoutSpec {
+      InsetLayout(insets: .init(top: 15.0, left: 15.0, bottom: 15.0, right: 15.0)) {
+        HStackLayout(spacing: 12.0, justifyContent: .start, alignItems: .stretch) {
+          self.profileNode
+          LayoutSpec {
+            VStackLayout(spacing: 4.0, justifyContent: .start, alignItems: .stretch) {
+              self.repoNameNode
+              self.repoDescNode
+              self.infoNode
+            }
+          }
+          .styled({ $0.shrink().nonGrow() })
+        }
+      }
+    }
   }
 }
