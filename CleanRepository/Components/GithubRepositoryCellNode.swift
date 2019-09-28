@@ -33,17 +33,17 @@ final class GithubRepositoryCellNode: ASCellNode {
     
     static let titleAttr: StringStyle = .init(
       .font(UIFont.boldSystemFont(ofSize: 18.0)),
-      .color(.darkGray)
+      .color(.gitDarkGray)
     )
     
     static let descAttr: StringStyle = .init(
       .font(UIFont.systemFont(ofSize: 14.0)),
-      .color(.gray)
+      .color(.gitDarkGray)
     )
     
     static let userInfoAttr: StringStyle = .init(
       .font(UIFont.systemFont(ofSize: 12.0)),
-      .color(.lightGray)
+      .color(.gitDarkGray)
     )
     
   }
@@ -71,7 +71,7 @@ final class GithubRepositoryCellNode: ASCellNode {
   private let contentNode: ASDisplayNode = {
     let node = ASDisplayNode()
     node.automaticallyManagesSubnodes = true
-    node.backgroundColor = .white
+    node.backgroundColor = .gitContentColor
     node.cornerRadius = 10.0
     return node
   }()

@@ -17,7 +17,7 @@ final class RepositoryFeedIntroCellNode: ASCellNode {
     
     static let titleAttr: StringStyle = .init(
       .font(UIFont.boldSystemFont(ofSize: 40.0)),
-      .color(.darkGray)
+      .color(.gitDarkGray)
     )
   }
   

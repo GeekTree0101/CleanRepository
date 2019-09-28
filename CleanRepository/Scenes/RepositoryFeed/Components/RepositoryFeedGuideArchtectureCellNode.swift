@@ -12,12 +12,12 @@ final class RepositoryFeedGuideArchtectureCellNode: ASCellNode {
     
     static let titleAttr: StringStyle = .init(
       .font(UIFont.boldSystemFont(ofSize: 20.0)),
-      .color(.orange)
+      .color(.gitOrange)
     )
     
     static let descAttr: StringStyle = .init(
       .font(UIFont.italicSystemFont(ofSize: 14.0)),
-      .color(.darkGray)
+      .color(.gitDarkGray)
     )
     
     static let copyrightAttr: StringStyle = .init(
@@ -61,7 +61,7 @@ final class RepositoryFeedGuideArchtectureCellNode: ASCellNode {
     
     let node = ASDisplayNode()
     node.automaticallyManagesSubnodes = true
-    node.backgroundColor = .white
+    node.backgroundColor = .gitContentColor
     node.cornerRadius = 10.0
     return node
   }()

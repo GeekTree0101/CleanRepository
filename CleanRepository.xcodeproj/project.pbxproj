@@ -40,6 +40,7 @@
 		DA5FD2DD231B80A300A75D75 /* ASControlNode+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5FD2DC231B80A300A75D75 /* ASControlNode+Ex.swift */; };
 		DA5FD2E9231BE2CB00A75D75 /* Injectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5FD2E8231BE2CB00A75D75 /* Injectable.swift */; };
 		DAB33C0C233F85D0002B9BB6 /* TextureLayoutSpecBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB33C0B233F85D0002B9BB6 /* TextureLayoutSpecBuilder.swift */; };
+		DAB33C0E233FA41A002B9BB6 /* RepositoryFeedContainerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB33C0D233FA41A002B9BB6 /* RepositoryFeedContainerNode.swift */; };
 		DAED5D5E232E4E9F00203E63 /* Codextended.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAED5D5D232E4E9F00203E63 /* Codextended.swift */; };
 		DAED5D60232E4F4200203E63 /* MBProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAED5D5F232E4F4200203E63 /* MBProgressHUD.framework */; };
 		DAED5D62232E4F9000203E63 /* RepositoryFeedModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAED5D61232E4F9000203E63 /* RepositoryFeedModels.swift */; };
@@ -108,6 +109,7 @@
 		DA5FD2DC231B80A300A75D75 /* ASControlNode+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ASControlNode+Ex.swift"; sourceTree = "<group>"; };
 		DA5FD2E8231BE2CB00A75D75 /* Injectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injectable.swift; sourceTree = "<group>"; };
 		DAB33C0B233F85D0002B9BB6 /* TextureLayoutSpecBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextureLayoutSpecBuilder.swift; sourceTree = "<group>"; };
+		DAB33C0D233FA41A002B9BB6 /* RepositoryFeedContainerNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryFeedContainerNode.swift; sourceTree = "<group>"; };
 		DAED5D5D232E4E9F00203E63 /* Codextended.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Codextended.swift; sourceTree = "<group>"; };
 		DAED5D5F232E4F4200203E63 /* MBProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MBProgressHUD.framework; path = Carthage/Build/iOS/MBProgressHUD.framework; sourceTree = "<group>"; };
 		DAED5D61232E4F9000203E63 /* RepositoryFeedModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryFeedModels.swift; sourceTree = "<group>"; };
@@ -299,6 +301,7 @@
 			children = (
 				DA5FD2C9231AAC5D00A75D75 /* RepositoryFeedIntroCellNode.swift */,
 				DA5FD2D8231B702000A75D75 /* RepositoryFeedGuideArchtectureCellNode.swift */,
+				DAB33C0D233FA41A002B9BB6 /* RepositoryFeedContainerNode.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -508,6 +511,7 @@
 				DA5FD2C1231969AA00A75D75 /* PromiseKit+Threading.swift in Sources */,
 				DA5FD2A523189FBC00A75D75 /* GithubUser.swift in Sources */,
 				DA5FD2E9231BE2CB00A75D75 /* Injectable.swift in Sources */,
+				DAB33C0E233FA41A002B9BB6 /* RepositoryFeedContainerNode.swift in Sources */,
 				DA5FD2B02318A08900A75D75 /* UserProfileNode.swift in Sources */,
 				DA5FD2DB231B7CB100A75D75 /* Router.swift in Sources */,
 				DA5FD2BA23194F0D00A75D75 /* GithubService.swift in Sources */,

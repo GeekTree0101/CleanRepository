@@ -12,7 +12,7 @@ protocol RepositoryFeedDisplayLogic: class {
   func displayFeedItems(_ viewModel: RepositoryFeedModels.Feed.ViewModel)
 }
 
-final class RepositoryFeedController: ASViewController<ASDisplayNode> {
+final class RepositoryFeedController: ASViewController<RepositoryFeedContainerNode> {
   
   enum Section: Int, CaseIterable {
     
@@ -21,40 +21,15 @@ final class RepositoryFeedController: ASViewController<ASDisplayNode> {
     case loadingIndicator
   }
   
-  lazy var collectionNode: ASCollectionNode = {
-    
-    let flowLayout = UICollectionViewFlowLayout.init()
-    flowLayout.scrollDirection = .vertical
-    flowLayout.minimumLineSpacing = 0.0
-    flowLayout.minimumInteritemSpacing = 0.0
-    let node = ASCollectionNode.init(collectionViewLayout: flowLayout)
-    node.registerSupplementaryNode(ofKind: UICollectionView.elementKindSectionHeader)
-    node.alwaysBounceVertical = true
-    node.delegate = self
-    node.dataSource = self
-    node.backgroundColor = .gitIvory
-    return node
-  }()
-  
   private var batchContext: ASBatchContext?
   private var feedViewModel: RepositoryFeedModels.Feed.ViewModel = .init()
   
   public var interactor: RepositoryFeedInteractorLogic!
   
   init() {
-    
-    super.init(node: ASDisplayNode.init())
-    self.node.backgroundColor = .gitIvory
-    self.node.automaticallyManagesSubnodes = true
-    self.node.automaticallyRelayoutOnSafeAreaChanges = true
-    self.node.layoutSpecBlock = { [weak self] (_, sizeRange) -> ASLayoutSpec in
-      guard let self = self else { return ASLayoutSpec() }
-      return LayoutSpec {
-        InsetLayout(insets: .zero) {
-          self.collectionNode
-        }
-      }
-    }
+    super.init(node: RepositoryFeedContainerNode.init())
+    self.node.collectionNode.delegate = self
+    self.node.collectionNode.dataSource = self
     self.configuration()
   }
   
@@ -76,6 +51,7 @@ final class RepositoryFeedController: ASViewController<ASDisplayNode> {
     let request = RepositoryFeedModels.Feed.Request(isReload: true)
     interactor.fetch(request)
   }
+  
 }
 
 extension RepositoryFeedController: RepositoryFeedDisplayLogic {
@@ -87,7 +63,7 @@ extension RepositoryFeedController: RepositoryFeedDisplayLogic {
     } else {
       self.feedViewModel = viewModel
       
-      self.collectionNode.performBatch(
+      self.node.collectionNode.performBatch(
         changes: viewModel.repoAreaChangeSet,
         section: Section.repoArea.rawValue,
         completion: { [weak self] fin in
