@@ -1,4 +1,4 @@
-github "texturegroup/texture" >= 2.8.1
+github "texturegroup/texture" "releases/7.34"
 github "Rightpoint/BonMot"
 github "mxcl/PromiseKit"
 github "onmyway133/DeepDiff" ~> 2.2.0
