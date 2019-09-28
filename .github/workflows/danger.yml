@@ -9,8 +9,8 @@ jobs:
     strategy:
       matrix:
         env:
-          - sdk: iphonesimulator12.2
-            destination: platform=iOS Simulator,name=iPhone XS,OS=12.2
+          - sdk: iphonesimulator13.0
+            destination: platform=iOS Simulator,name=iPhone 11,OS=13.0
     timeout-minutes: 20
     steps:
     - uses: actions/checkout@v1
@@ -38,6 +38,7 @@ jobs:
         SCHEME: CleanRepository
         SDK: ${{ matrix.env.sdk }}
         DESTINATION: ${{ matrix.env.destination }}
+        DEVELOPER_DIR: /Applications/Xcode_11.app/Contents/Developer
     - name: Test Coverage & Lint
       run: |
         echo "Running Danger..."
