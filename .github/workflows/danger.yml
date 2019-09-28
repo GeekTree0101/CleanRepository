@@ -24,6 +24,7 @@ jobs:
         brew install carthage
         carthage bootstrap --platform iOS
     - name: Test Automation
+      continue-on-error: true
       run: |
         set -o pipefail && xcodebuild clean build test \
           -project "$PROJECT" \
@@ -40,6 +41,7 @@ jobs:
         DESTINATION: ${{ matrix.env.destination }}
         DEVELOPER_DIR: /Applications/Xcode_11.app/Contents/Developer
     - name: Test Coverage & Lint
+      continue-on-error: true
       run: |
         echo "Running Danger..."
         bundle exec danger --fail-on-errors=true
