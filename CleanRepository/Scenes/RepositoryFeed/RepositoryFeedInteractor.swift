@@ -32,7 +32,6 @@ class RepositoryFeedInteractor: RepositoryFeedDataStore {
 
 extension RepositoryFeedInteractor: RepositoryFeedInteractorLogic {
   
-  
   func fetch(_ request: RepositoryFeedModels.Feed.Request) {
     
     _repoService.fetch(nextPage: request.isReload ? nil: self.nextSince)
