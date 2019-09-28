@@ -18,11 +18,4 @@ class Router {
     guard let url = URL(string: "https://github.com/GeekTree0101/CleanRepository") else { return }
     UIApplication.shared.open(url, options: [:], completionHandler: nil)
   }
-  
-  public func openUserProfile(_ username: String?, from: UIViewController?) {
-    guard let username = username else { return }
-    let vc = UserProfileController.init()
-    vc.currentState.username = username
-    from?.present(vc, animated: true, completion: nil)
-  }
 }

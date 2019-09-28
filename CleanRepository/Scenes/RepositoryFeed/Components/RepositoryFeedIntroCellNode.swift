@@ -52,15 +52,16 @@ final class RepositoryFeedIntroCellNode: ASCellNode {
   }
   
   override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-    let contentLayout = ASStackLayoutSpec.init(
-      direction: .vertical,
-      spacing: 5.0,
-      justifyContent: .start,
-      alignItems: .start,
-      children: [infoNode, titleNode].map({ $0.styled({ $0.shrink() }) }))
-    
-    return ASInsetLayoutSpec.init(
-      insets: .init(top: 40.0, left: 20.0, bottom: 40.0, right: 20.0),
-      child: contentLayout)
+    return LayoutSpec {
+      InsetLayout(insets: .init(top: 40.0, left: 20.0, bottom: 40.0, right: 20.0)) {
+        LayoutSpec {
+          VStackLayout(spacing: 5.0, justifyContent: .start, alignItems: .start) {
+            self.infoNode
+            self.titleNode
+          }
+        }
+        .styled({ $0.shrink() })
+      }
+    }
   }
 }

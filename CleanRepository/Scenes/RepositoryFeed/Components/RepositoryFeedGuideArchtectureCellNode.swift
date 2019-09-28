@@ -85,33 +85,29 @@ final class RepositoryFeedGuideArchtectureCellNode: ASCellNode {
   }
   
   override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-    
-    return ASInsetLayoutSpec.init(
-      insets: .init(top: 10.0, left: 15.0, bottom: 10.0, right: 15.0),
-      child: contentNode)
+    return LayoutSpec {
+      InsetLayout(insets: .init(top: 10.0, left: 15.0, bottom: 10.0, right: 15.0)) {
+        self.contentNode
+      }
+    }
   }
   
   private func contentLayoutSpec() -> ASLayoutSpec {
     
-    let contentLayout = ASStackLayoutSpec.init(
-      direction: .vertical,
-      spacing: 0.0,
-      justifyContent: .start,
-      alignItems: .start,
-      children: [titleNode.styled({ $0.shrink().spacingAfter(12.0) }),
-                 descNode.styled({ $0.shrink().spacingAfter(4.0) }),
-                 copyrightNode.styled({ $0.shrink() })])
-    
-    let contentWithButtonLayout = ASStackLayoutSpec.init(
-      direction: .horizontal,
-      spacing: 14.0,
-      justifyContent: .spaceBetween,
-      alignItems: .center,
-      children: [contentLayout.styled({ $0.shrink() }),
-                 openRepoButtonNode])
-    
-    return ASInsetLayoutSpec.init(
-      insets: .init(top: 15.0, left: 15.0, bottom: 15.0, right: 15.0),
-      child: contentWithButtonLayout)
+    return LayoutSpec {
+      InsetLayout(insets: .init(top: 15.0, left: 15.0, bottom: 15.0, right: 15.0)) {
+        HStackLayout(spacing: 14.0, justifyContent: .spaceBetween, alignItems: .center) {
+          LayoutSpec {
+            VStackLayout(spacing: 0.0, justifyContent: .start, alignItems: .start) {
+              self.titleNode.styled({ $0.spacingAfter(12.0) })
+              self.descNode.styled({ $0.spacingAfter(4.0) })
+              self.copyrightNode
+            }
+          }
+          .styled({ $0.shrink() })
+          self.openRepoButtonNode
+        }
+      }
+    }
   }
 }
