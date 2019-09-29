@@ -41,6 +41,7 @@
 		DA5FD2E9231BE2CB00A75D75 /* Injectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5FD2E8231BE2CB00A75D75 /* Injectable.swift */; };
 		DAB33C0C233F85D0002B9BB6 /* TextureLayoutSpecBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB33C0B233F85D0002B9BB6 /* TextureLayoutSpecBuilder.swift */; };
 		DAB33C0E233FA41A002B9BB6 /* RepositoryFeedContainerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB33C0D233FA41A002B9BB6 /* RepositoryFeedContainerNode.swift */; };
+		DAB33C102340415D002B9BB6 /* NodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB33C0F2340415D002B9BB6 /* NodeViewModel.swift */; };
 		DAED5D5E232E4E9F00203E63 /* Codextended.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAED5D5D232E4E9F00203E63 /* Codextended.swift */; };
 		DAED5D60232E4F4200203E63 /* MBProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAED5D5F232E4F4200203E63 /* MBProgressHUD.framework */; };
 		DAED5D62232E4F9000203E63 /* RepositoryFeedModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAED5D61232E4F9000203E63 /* RepositoryFeedModels.swift */; };
@@ -110,6 +111,7 @@
 		DA5FD2E8231BE2CB00A75D75 /* Injectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injectable.swift; sourceTree = "<group>"; };
 		DAB33C0B233F85D0002B9BB6 /* TextureLayoutSpecBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextureLayoutSpecBuilder.swift; sourceTree = "<group>"; };
 		DAB33C0D233FA41A002B9BB6 /* RepositoryFeedContainerNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryFeedContainerNode.swift; sourceTree = "<group>"; };
+		DAB33C0F2340415D002B9BB6 /* NodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeViewModel.swift; sourceTree = "<group>"; };
 		DAED5D5D232E4E9F00203E63 /* Codextended.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Codextended.swift; sourceTree = "<group>"; };
 		DAED5D5F232E4F4200203E63 /* MBProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MBProgressHUD.framework; path = Carthage/Build/iOS/MBProgressHUD.framework; sourceTree = "<group>"; };
 		DAED5D61232E4F9000203E63 /* RepositoryFeedModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryFeedModels.swift; sourceTree = "<group>"; };
@@ -292,6 +294,7 @@
 			children = (
 				DA5FD2BE2319533F00A75D75 /* Network.swift */,
 				DA5FD2C0231969AA00A75D75 /* PromiseKit+Threading.swift */,
+				DAB33C0F2340415D002B9BB6 /* NodeViewModel.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -504,6 +507,7 @@
 				DA5FD2D9231B702000A75D75 /* RepositoryFeedGuideArchtectureCellNode.swift in Sources */,
 				DA5FD2C3231AA51F00A75D75 /* ASCollectionNode+Ex.swift in Sources */,
 				DAED5D5E232E4E9F00203E63 /* Codextended.swift in Sources */,
+				DAB33C102340415D002B9BB6 /* NodeViewModel.swift in Sources */,
 				DA5FD2CC231AAC7D00A75D75 /* FeedLoadingIndicatorCellNode.swift in Sources */,
 				DAED5D66232E505400203E63 /* RepositoryFeedPresenter.swift in Sources */,
 				DA5FD2D7231B6C0100A75D75 /* FeedUseCase.swift in Sources */,
@@ -673,6 +677,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = JTEXWEH4CZ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -694,6 +699,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = JTEXWEH4CZ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",

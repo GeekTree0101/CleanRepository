@@ -76,14 +76,11 @@ final class GithubRepositoryCellNode: ASCellNode {
     return node
   }()
   
-  public var state: State? {
-    didSet {
-      self.updateWithState(state)
-    }
-  }
+  @LiveState var state: State? = nil
   
   override init() {
     super.init()
+    self._state.delegate = self
     self.automaticallyManagesSubnodes = true
     self.backgroundColor = .clear
     
@@ -115,14 +112,15 @@ final class GithubRepositoryCellNode: ASCellNode {
       }
     }
   }
+}
+
+extension GithubRepositoryCellNode: LiveStateDelegate {
   
-  private func updateWithState(_ state: State?) {
+  func didChangedState() {
     profileNode.state = state?.profileState
     repoNameNode.attributedText = state?.repoName?.styled(with: Const.titleAttr)
     repoDescNode.attributedText = state?.repoDesc?.styled(with: Const.descAttr)
-    
     guard let username = state?.username else { return }
     infoNode.attributedText = "Created by \(username)".styled(with: Const.userInfoAttr)
   }
-  
 }

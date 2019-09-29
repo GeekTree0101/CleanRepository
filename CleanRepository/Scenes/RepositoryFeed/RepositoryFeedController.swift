@@ -135,7 +135,7 @@ extension RepositoryFeedController: ASCollectionDataSource {
 }
 
 extension RepositoryFeedController: ASCollectionDelegate & ASCollectionDelegateFlowLayout {
-  
+    
   func shouldBatchFetch(for collectionNode: ASCollectionNode) -> Bool {
     return feedViewModel.hasNext
   }
